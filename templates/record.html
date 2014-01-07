@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="/templates/static/script.js"></script>
+        <link rel="stylesheet" type="text/css" href="/templates/static/style.css">
+    </head> 
+     
+     
+    <body> 
+        <div class=headfoot id=header>
+            <a href="home">Riley's Records</a>
+            <table id="mainMenu">
+                <tr id="menuBar">
+                    <td id="albumButton"><a href="albums">Albums</a></td>
+                    <td><a href="artists">Artists</a></td>
+                    <td id="genreButton"><a href="genres">Genres</a></td>
+                    <td id="wishlistButton"><a href="wishlist">Wishlist</a></td>
+                    <td id="search">
+                        <form>
+                            <input onfocus="if (this.value=='search') this.value = ''" type="text" name="search" value="search">
+                            <button type="submit" value="search">GO</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr id="subMenu">
+                    <td>
+                        <ul class="list" id="albumList">
+                            <li class="sub"><a class="sub" href="add">Add New</a></li>
+                            <li class="sub"><a class="sub" href="newest">Newest</a></li>
+                            <li class="sub"><a class="sub" href="list">List</a></li>
+                        </ul>
+                    </td>
+                    <td></td>
+                    <td>
+                        <ul class="list" id="genreList">
+                            {% for genre in genreList %}
+                                <li class="sub"><a class="sub" href={{genre}}>{{genre}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="list" id="wishlistList">
+                            <li class="sub"><a class="sub" href="addNewWish">Add New</a></li>
+                            <li class="sub"><a class="sub" href="viewWish">View</a></li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        
+        <div class="center">
+            <br><br>
+            <h2 class="albumTitle">{{record.album}}</h2>
+            <h2 class="artistName">{{record.artist}}</h2>
+            <br>
+            
+            <div class="artwork">
+                {% if record.frontCover is defined %}<img src="{{record.frontCover}}" alt="{{record.album}} Front" width="100" height="100"/>{% endif %}
+                {% if record.backCover is defined %}<img src="{{record.backCover}}" alt="{{record.album}} Back" width="100" height="100"/>{% endif %}
+                {% if record.inside is defined %}<img src="{{record.inside}}" alt="{{record.album}} Inside" height="100"/>{% endif %}
+            </div>
+            
+            <div class="trackListing">
+                <ol>
+                    {% for track in record.tracks %}
+                        <li>{{track}}</li>
+                    {% endfor %}
+                </ol>
+            </div>
+            
+            <div class="albumInfo">
+                {{record.genres}}<br>
+                {{record.year}}<br>
+                {{record.label}}<br>
+                Personnel:<br>
+                {% for person in record.personnel %}{{person}}<br>{% endfor %}
+                Producer(s):<br>
+                {% for producer in record.producers %}{{producer}}<br>{% endfor %}
+                <br>
+                {{record.notes}}<br><br>
+                Added On: {{record.dateAdded}}
+            </div>
+        </div>
+        
+        <div class=headfoot id=footer>
+            2014 
+            <br>
+            Riley Lundquist
+        </div>
+    </body>
+</html>

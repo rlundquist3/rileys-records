@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script type="text/javascript" src="/templates/static/script.js"></script>
+        <link rel="stylesheet" type="text/css" href="/templates/static/style.css">
+    </head> 
+     
+     
+    <body> 
+        <div class=headfoot id=header>
+            <a href="home">Riley's Records</a>
+            <table id="mainMenu">
+                <tr id="menuBar">
+                    <td id="albumButton"><a href="albums">Albums</a></td>
+                    <td><a href="artists">Artists</a></td>
+                    <td id="genreButton"><a href="genres">Genres</a></td>
+                    <td id="wishlistButton"><a href="wishlist">Wishlist</a></td>
+                    <td id="search">
+                        <form>
+                            <input onfocus="if (this.value=='search') this.value = ''" type="text" name="search" value="search">
+                            <button type="submit" value="search">GO</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr id="subMenu">
+                    <td>
+                        <ul class="list" id="albumList">
+                            <li class="sub"><a class="sub" href="add">Add New</a></li>
+                            <li class="sub"><a class="sub" href="newest">Newest</a></li>
+                            <li class="sub"><a class="sub" href="list">List</a></li>
+                        </ul>
+                    </td>
+                    <td></td>
+                    <td>
+                        <ul class="list" id="genreList">
+                            {% for genre in genreList %}
+                                <li class="sub"><a class="sub" href={{genre}}>{{genre}}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                    <td>
+                        <ul class="list" id="wishlistList">
+                            <li class="sub"><a class="sub" href="addNewWish">Add New</a></li>
+                            <li class="sub"><a class="sub" href="viewWish">View</a></li>
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="center" id="addAlbum">
+            <h2>
+                Add New Album
+            </h2>
+            <form method="post">
+                <table>
+                    <tr>
+                        <td>Album:</td><td><input type="text" name="album" required="true"></td>
+                    </tr>
+                    <tr>
+                        <td>Artist:</td><td><input type="text" name="artist" required="true"></td>
+                    </tr>
+                </table>
+                <br>Personnel:<br>
+                    <ol id="personnelList" name="personnelList">
+                        <input type="text" name="personnel">
+                    </ol>
+                    <button type="button" id="addPersonnel" value="addPersonnel" onclick="addPersonnel()">Add</button><br>
+                <table>
+                    <tr>
+                        <td>Year:</td>
+                        <td>
+                            <select name="year">
+                                {% for year in years %}
+                                    <option value={{year}}>{{year}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Label:</td><td><input type="text" name="label"></td>
+                    </tr>
+                </table>
+                    <br>Producer(s):<br>
+                    <ol id="producerList" name="producerList">
+                        <input type="text" name="producer">
+                    </ol>
+                    <button type="button" id="addProducer" value="addProducer" onclick="addProducer()">Add</button><br>
+                <table>
+                    <tr>
+                        <td>Genre:</td>
+                        <td>
+                            <select name="genres">
+                                {% for genre in genreList %}
+                                    <option value={{genre}}>{{genre}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Front Cover:</td><td><input type="file" name="frontCover"></td>
+                    </tr>
+                    <tr>
+                        <td>Back Cover:</td><td><input type="file" name="backCover"></td>
+                    </tr>
+                    <tr>
+                        <td>Inside:</td><td><input type="file" name="inside"></td>
+                    </tr>
+                </table>
+                    <br>Tracks:<br>
+                    <ol id="trackList" name="trackList">
+                        <input type="text" name="track">
+                    </ol>
+                    <button type="button" id="addTrack" value="addTrack" onclick="addTrack()">Add</button><br>
+                    <br>Notes:
+                    <textarea id="emailMessage" name="notes"></textarea><br>
+                
+                <button type="submit" value="finish">DONE</button>
+            </form>
+        </div>
+        
+        <div class=headfoot id=footer>
+            2014 
+            <br>
+            Riley Lundquist
+        </div>
+    </body>
+</html>
