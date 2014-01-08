@@ -10,7 +10,7 @@
      
     <body> 
         <div class=headfoot id=header>
-            <a href="home">Riley's Records</a>
+            <a href="/">Riley's Records</a>
             <table id="mainMenu">
                 <tr id="menuBar">
                     <td id="albumButton"><a href="albums">Albums</a></td>
@@ -52,15 +52,14 @@
         
         
         <div class="center">
-            <br><br>
             <h2 class="albumTitle">{{record.album}}</h2>
             <h2 class="artistName">{{record.artist}}</h2>
             <br>
             
             <div class="artwork">
-                {% if record.frontCover is defined %}<img src="{{record.frontCover}}" alt="{{record.album}} Front" width="100" height="100"/>{% endif %}
-                {% if record.backCover is defined %}<img src="{{record.backCover}}" alt="{{record.album}} Back" width="100" height="100"/>{% endif %}
-                {% if record.inside is defined %}<img src="{{record.inside}}" alt="{{record.album}} Inside" height="100"/>{% endif %}
+                {% if record.frontCover is defined %}<img src="templates/static/images/{{record.frontCover}}" alt="{{record.album}} Front" height="500"/>{% endif %}
+                <!--{% if record.backCover is defined %}<img src="templates/static/images/{{record.backCover}}" alt="{{record.album}} Back" height="500"/>{% endif %}-->
+                <!--{% if record.inside is defined %}<img src="templates/static/images/{{record.inside}}" alt="{{record.album}} Inside" height="500"/>{% endif %}-->
             </div>
             
             <div class="trackListing">

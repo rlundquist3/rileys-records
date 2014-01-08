@@ -1,11 +1,18 @@
 .center {
+    width: 70%;
     margin-right:auto;
     margin-left:auto;
+    margin-top: 150px;
+    margin-bottom: 150px;
+    font-family: sans-serif;
 }
 h1 {
     color:#056495;
     font-family:sans-serif;
     width:30%;
+}
+h2 {
+    
 }
 table {
     border-collapse:collapse;
