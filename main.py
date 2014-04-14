@@ -42,7 +42,7 @@ class Record(db.Model):
     inside = db.StringProperty()
     notes = db.TextProperty()
     dateAdded = db.DateProperty(auto_now_add = True)
-    
+
 class Person(db.Model):
     first = db.StringProperty(required = True)
     last = db.StringProperty()
@@ -61,11 +61,11 @@ jinjaEnv = jinja2.Environment(loader = jinja2.FileSystemLoader(templateDir), aut
 class Handler(webapp2.RequestHandler):
     def write(self, *a, **kw):
         self.response.out.write(*a, **kw)
-        
+
     def renderStr(self, template, **params):
         t = jinjaEnv.get_template(template)
         return t.render(params)
-    
+
     def render(self, template, **kw):
         self.write(self.renderStr(template, **kw))
 
@@ -74,7 +74,7 @@ for year in range(1920, datetime.now().year+1):
     yearList.append(year)
 yearList.append('')
 yearList.reverse()
-        
+
 genreList = ['alternative', 'bluegrass', 'blues', 'folk', 'jazz', 'rock']
 
 '''def recent16(update = False):
@@ -99,14 +99,14 @@ class AddPage(Handler):
     def renderPost(self):
         self.render('add.html', genreList = genreList, years = yearList, album = '', artist = '', personnel = '', label = '', year = '', producers = '',
                     genres = '', frontCover = '', backCover = '', inside = '', notes = '', error = '')
-        
+
     def get(self):
         self.renderPost()
-    
+
     def post(self):
         album = self.request.get('album')
         artist = self.request.get('artist')
-        
+
         num = 1
         personnel = list()
         person = self.request.get('personnel1')
@@ -114,10 +114,10 @@ class AddPage(Handler):
             personnel.append(person)
             num = num+1
             person = self.request.get('personnel%d' %num)
-            
+
         label = self.request.get('label')
         year = self.request.get('year')
-        
+
         num = 1
         producers = list()
         producer = self.request.get('producer1')
@@ -125,13 +125,13 @@ class AddPage(Handler):
             producers.append(producer)
             num = num+1
             producer = self.request.get('producer%d' %num)
-            
+
         genres = self.request.get('genres')
         frontCover = self.request.get('frontCover')
         backCover = self.request.get('backCover')
         inside = self.request.get('inside')
         notes = self.request.get('notes')
-        
+
         num = 1
         tracks = list()
         track = self.request.get('track1')
@@ -139,23 +139,23 @@ class AddPage(Handler):
             tracks.append(track)
             num = num+1
             track = self.request.get('track%d' %num)
-        
+
         if album and artist and tracks:
             record = Record(album = album, artist = artist, personnel = personnel, label = label, year = year, producers = producers,
                             genres = genres, tracks = tracks, frontCover = frontCover, backCover = backCover, inside = inside, notes = notes)
-            
+
             recordId = record.put()
-            
+
             self.redirect('/record%d' %recordId.id())
         else:
             error = 'Ooops...album, artist & tracks must be added!'
             self.renderPost(album = album, artist = artist, personnel = personnel, label = label, year = year, producers = producers,
                             genres = genres, tracks = tracks, frontCover = frontCover, backCover = backCover, inside = inside, notes = notes, error = error)
-            
+
 class RecordPage(Handler):
     def get(self, recordId):
         record = Record.get_by_id(int(recordId))
-        
+
         if record:
             self.render('record.html', genreList = genreList, record = record)
         else:

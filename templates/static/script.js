@@ -1,37 +1,37 @@
 $(document).ready(function () {
-    $("#genreButton").hover(function () {
-        $("#genreList").slideDown("slow");
+    $(".genrestab").hover(function () {
+        $(".genrelist").slideDown("slow");
     });
 });
 $(document).ready(function () {
-    $("#wishlistButton").hover(function () {
-        $("#wishlistList").slideDown("slow");
+    $(".wishlisttab").hover(function () {
+        $(".wishlistlist").slideDown("slow");
     });
 });
 $(document).ready(function () {
-    $("#albumButton").hover(function () {
-        $("#albumList").slideDown("slow");
+    $(".albumstab").hover(function () {
+        $(".albumlist").slideDown("slow");
     });
 });
 $(document).ready(function () {
-    $("#genreList").hover(function () {
-        $("#genreList").show();
+    $(".genrelist").hover(function () {
+        $(".genrelist").show();
     }, function () {
-        $("#genreList").slideUp("slow");
+        $(".genrelist").slideUp("slow");
     });
 });
 $(document).ready(function () {
-    $("#wishlistList").hover(function () {
-        $("#wishlistList").show();
+    $(".wishlistlist").hover(function () {
+        $(".wishlistlist").show();
     }, function () {
-        $("#wishlistList").slideUp("slow");
+        $(".wishlistlist").slideUp("slow");
     });
 });
 $(document).ready(function () {
-    $("#albumList").hover(function () {
-        $("#albumList").show();
+    $(".albumlist").hover(function () {
+        $(".albumlist").show();
     }, function () {
-        $("#albumList").slideUp("slow");
+        $(".albumlist").slideUp("slow");
     });
 });
 $(document).ready(function () {

@@ -1,93 +1,80 @@
-<!DOCTYPE html>
-
+<!doctype html>
 <html>
-    <head>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-        <script type="text/javascript" src="/templates/static/script.js"></script>
-        <link rel="stylesheet" type="text/css" href="/templates/static/style.css">
-    </head> 
-     
-     
-    <body> 
-        <div class=headfoot id=header>
-            <a href="/">Riley's Records</a>
-            <table id="mainMenu">
-                <tr id="menuBar">
-                    <td id="albumButton"><a href="albums">Albums</a></td>
-                    <td><a href="artists">Artists</a></td>
-                    <td id="genreButton"><a href="genres">Genres</a></td>
-                    <td id="wishlistButton"><a href="wishlist">Wishlist</a></td>
-                    <td id="search">
-                        <form>
-                            <input onfocus="if (this.value=='search') this.value = ''" type="text" name="search" value="search">
-                            <button type="submit" value="search">GO</button>
-                        </form>
-                    </td>
-                </tr>
-                <tr id="subMenu">
-                    <td>
-                        <ul class="list" id="albumList">
-                            <li class="sub"><a class="sub" href="add">Add New</a></li>
-                            <li class="sub"><a class="sub" href="newest">Newest</a></li>
-                            <li class="sub"><a class="sub" href="list">List</a></li>
-                        </ul>
-                    </td>
-                    <td></td>
-                    <td>
-                        <ul class="list" id="genreList">
-                            {% for genre in genreList %}
-                                <li class="sub"><a class="sub" href={{genre}}>{{genre}}</a></li>
-                            {% endfor %}
-                        </ul>
-                    </td>
-                    <td>
-                        <ul class="list" id="wishlistList">
-                            <li class="sub"><a class="sub" href="addNewWish">Add New</a></li>
-                            <li class="sub"><a class="sub" href="viewWish">View</a></li>
-                        </ul>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        
-        
-        <div class="center">
-            <h2 class="albumTitle">{{record.album}}</h2>
-            <h2 class="artistName">{{record.artist}}</h2>
-            <br>
-            
-            <div class="artwork">
-                {% if record.frontCover is defined %}<img src="templates/static/images/{{record.frontCover}}" alt="{{record.album}} Front" height="500"/>{% endif %}
-                <!--{% if record.backCover is defined %}<img src="templates/static/images/{{record.backCover}}" alt="{{record.album}} Back" height="500"/>{% endif %}-->
-                <!--{% if record.inside is defined %}<img src="templates/static/images/{{record.inside}}" alt="{{record.album}} Inside" height="500"/>{% endif %}-->
-            </div>
-            
-            <div class="trackListing">
-                <ol>
-                    {% for track in record.tracks %}
-                        <li>{{track}}</li>
-                    {% endfor %}
-                </ol>
-            </div>
-            
-            <div class="albumInfo">
-                {{record.genres}}<br>
-                {{record.year}}<br>
-                {{record.label}}<br>
-                Personnel:<br>
-                {% for person in record.personnel %}{{person}}<br>{% endfor %}
-                Producer(s):<br>
-                {% for producer in record.producers %}{{producer}}<br>{% endfor %}
-                <br>
-                {{record.notes}}<br><br>
-                Added On: {{record.dateAdded}}
-            </div>
-        </div>
-        
-        <div class=headfoot id=footer>
-            2014 
-            <br>
-            Riley Lundquist
-        </div>
-    </body>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0">
+  <title>{{record.album}}</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="/templates/static/script.js"></script>
+  <link href="http://fonts.googleapis.com/css?family=Oxygen:400,400|Josefin+Slab:600" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="css/standardize.css">
+  <link rel="stylesheet" href="css/record-grid.css">
+  <link rel="stylesheet" href="css/record.css">
+</head>
+<body class="body record clearfix">
+  <div class="container _container container-1">
+    <p class="text text-1">wishlist</p>
+  </div>
+  <p class="text text-2">Palomino</p>
+  <div class="container container-2">
+    <div class="home">
+      <p>Riley's Records</p>
+      <p><br></p>
+</div>
+    <div class="container container-3">
+      <div class="artiststab">&nbsp;artists</div>
+      <div class="albumstab">
+        <p>&nbsp;albums</p>
+        <p><br></p>
+</div>
+      <div class="genrestab">genres</div>
+      <div class="wishlisttab">wishlist</div>
+    </div>
+  </div>
+  <div class="container _container container-4">
+    <img class="image image-1" src="images/ab_magpie.jpg">
+    <div class="container _container">
+      <div class="artist">{{record.artist}}</div>
+      <div class="album">{{record.album}}</div>
+      <div class="tracks">
+        <ol>
+            {% for track in record.tracks %}
+                <li>{{track}}</li>
+            {% endfor %}
+        </ol>
+</div>
+    </div>
+  </div>
+  <div class="container _container container-6">
+    <div class="albumlist js-albums-menu">
+      <p class="text">add new</p>
+      <p class="text text-7">newest</p>
+      <p class="text text-8">list</p>
+    </div>
+    <div class="genrelist js-genres-menu">
+      <p class="text text-9">alternative</p>
+      <p class="text text-10">bluegrass</p>
+      <p class="text text-11">blues</p>
+      <p class="text text-12">folk</p>
+      <p class="text text-13">jazz</p>
+      <p class="text text-14">rock</p>
+    </div>
+    <div class="wishlistlist js-wishlist-menu">
+      <p class="text text-15">add new</p>
+      <p class="text text-16">view</p>
+    </div>
+  </div>
+  <div class="container _container container-7">
+    <p class="text text-17">more by The Avett Brothers &nbsp;</p>
+    <img class="image image-2" src="images/ab_the_carpenter.jpg">
+  </div>
+  <p class="text text-18">&nbsp;</p>
+  <div class="container _container container-8 clearfix">
+    <div class="element"></div>
+    <div class="text text-19">
+      <p>2014</p>
+      <p>Riley Lundquist</p>
+</div>
+  </div>
+</body>
 </html>
